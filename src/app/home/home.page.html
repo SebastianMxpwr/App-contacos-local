@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Contactos, buto
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,62 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Contactos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+
+<ion-content>
+  <div class=form>
+    <h3> Agregar Contacto/s</h3>
+
+    <ion-item>
+      <ion-label position="floating">Nombre completo</ion-label>
+      <ion-input type="text" [(ngModel)]='nombreCompleto'></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input type="tel" [(ngModel)]='telefono'></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="text" [(ngModel)]='correo'></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Notas</ion-label>
+      <ion-textarea [(ngModel)]='notas'></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="full" (click)="addcontacto()"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+    
+    <div *ngIf="contactos?.length>0" style="margin-top: 20px;">
+      <h3 color="secondary">Mis contactos</h3>
+
+      <ion-item>
+        <ion-label>Ver notas</ion-label>
+        <ion-toggle [(ngModel)]="verNotas"></ion-toggle>
+      </ion-item>
+
+      <ion-card *ngFor="let contacto of contactos; let i=index">
+          <ion-card-header>
+            <ion-card-subtitle>{{contactos[i].correo}}</ion-card-subtitle>
+            <ion-card-title>{{contacto.nombreCompleto}}</ion-card-title>
+            <ion-card-subtitle>{{contacto.telefono}}</ion-card-subtitle>
+            <ion-button style="float: right;" color="danger" (click)="deletecontacto(i)">Borrar</ion-button>
+          </ion-card-header>
+
+          <ion-card-content *ngIf="verNotas">
+            {{contacto.notas}}
+          </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="contactos?.length==0" style="margin-top: 20px;">
+      <h1 color='primary'>No hay contactos</h1>
+    </div>
   </div>
 </ion-content>
+

@@ -25,3 +25,25 @@
 #container a {
   text-decoration: none;
 }
+
+.Hombre{
+  background-color: rgb(160, 216, 237);
+  border: 4px  #306e51;
+  &.mayor{
+    border-style: solid;
+  }
+  &.menor{
+    border-style: dotted;
+  }
+}
+
+.Mujer{
+  background-color: pink;
+  border: 4px #6e305a;
+  &.mayor{
+    border-style: solid;
+  }
+  &.menor{
+    border-style: dotted;
+  }
+}
